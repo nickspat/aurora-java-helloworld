@@ -7,26 +7,17 @@
   <property name="app.path"      value="/${app.name}"/>
   <property name="app.version"   value="0.1-dev"/>
   <property name="build.home"    value="${basedir}/target/${app.name}"/>
-  <property name="catalina.home" value="../../../.."/> <!-- UPDATE THIS! -->
-  <property name="dist.home"     value="${basedir}/dist"/>
-  <property name="docs.home"     value="${basedir}/docs"/>
-  <property name="manager.url"   value="http://localhost:8080/manager"/>
   <property name="src.home"      value="${basedir}/src/main/java"/>
   <property name="web.home"      value="${basedir}/src/main/webapp"/>
-
-
-	<property name="war-file-name" value="${project-name}.war" />
-	<property name="source-directory" value="${basedir}/src/main/java" />
+	<property name="war-file-name" value="${project-name}.war" />	
 	<property name="classes-directory" value="${build.home}/WEB-INF/classes" />
 	
 	<property name="web-xml-file" value="${web.home}/WEB-INF/web.xml" />
-	<property name="foo.jar"
-           value="/path/to/foo.jar"/>
+
 	<tstamp prefix="build-info">
 		<format property="current-date" pattern="d-MMMM-yyyy" locale="en" />
 		<format property="current-time" pattern="hh:mm:ss a z" locale="en" />
-	</tstamp>
-	<property name="build-directory" value="build" />
+	</tstamp>	
 
 	<target name="war" depends="">
 		
@@ -48,14 +39,14 @@
 		</war>
 	</target>
 	<path id="compile.classpath">
-		<fileset dir="${web-directory}/WEB-INF/lib">
+		<fileset dir="${web.home}/WEB-INF/lib">
 		  <include name="*.jar"/>
 		</fileset>
 
 	</path>
 	  <taskdef resource="org/apache/catalina/ant/catalina.tasks"
            classpathref="compile.classpath"/>
-	  <target name="all" depends="clean,compile"
+	  <target name="all" depends="clean,compile,war"
    description="Clean build and dist directories, then compile"/>
 	  <target name="clean"
    description="Delete old build and dist directories">
@@ -65,9 +56,9 @@
 	  <target name="compile" depends="prepare" description="Compile Java sources">
 
     <!-- Compile Java classes as necessary -->
-    <mkdir    dir="${build.home}/WEB-INF/classes"/>
+    <mkdir    dir="${classes-directory}"/>
     <javac srcdir="${src.home}"
-          destdir="${build.home}/WEB-INF/classes"
+          destdir="${classes-directory}"
             debug="${compile.debug}"
       deprecation="${compile.deprecation}"
          optimize="${compile.optimize}">
@@ -87,8 +78,6 @@
     <mkdir  dir="${build.home}/WEB-INF"/>
 	<mkdir  dir="${build.home}/META-INF"/>
     <mkdir  dir="${build.home}/WEB-INF/classes"/>
-
-
 
 
     <!-- Copy external dependencies as required -->
