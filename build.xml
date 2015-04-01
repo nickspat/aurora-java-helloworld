@@ -44,8 +44,7 @@
 		</fileset>
 
 	</path>
-	  <taskdef resource="org/apache/catalina/ant/catalina.tasks"
-           classpathref="compile.classpath"/>
+
 	  <target name="all" depends="clean,compile,war"
    description="Clean build and dist directories, then compile"/>
 	  <target name="clean"
