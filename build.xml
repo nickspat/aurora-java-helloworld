@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="helloworld" default="all" basedir=".">
+<project name="helloworld" default="test" basedir=".">
 	<property file="build.properties"/>
 	<property file="${user.home}/build.properties"/>
 	<property name="project-name" value="${ant.project.name}" />
@@ -45,7 +45,7 @@
 
 	</path>
 
-	  <target name="all" depends="clean,compile,war"
+	  <target name="test" depends="clean,compile,war"
    description="Clean build and dist directories, then compile"/>
 	  <target name="clean"
    description="Delete old build and dist directories">
