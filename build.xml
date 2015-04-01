@@ -26,7 +26,7 @@
 		<copy todir="${build.home}">
 			<fileset dir="${web.home}"/>
 		</copy>
-		<war warfile="${build.home}/${war-file-name}" webxml="${web-xml-file}">
+		<war warfile="${build.home}/../${war-file-name}" webxml="${web-xml-file}">
 			<classes dir="${classes-directory}" />
 			<fileset dir="${build.home}">
 				<!-- Need to exclude it since webxml is an attribute of the war tag above -->
